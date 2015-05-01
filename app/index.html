@@ -32,6 +32,12 @@
             <div class="jumbotron">
                 <h1>Weather Forecast</h1>
                 <p class="lead">Choose a city to get your forecast:</p>
+                <div id="page">
+                	<form onSubmit="getForecast(cityName.value)">
+                        <input type="text" name="cityName" id="cityName" value="Your city" onFocus="if(this.value=='Your city')this.value='';">
+                        <input type="submit" title="Get Forecast">
+                    </form>
+                </div>
                 <p><a class="btn btn-lg btn-success" href="#">Go!</a></p>
             </div>
 
