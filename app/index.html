@@ -12,6 +12,61 @@
         <!-- build:js scripts/vendor/modernizr.js -->
         <script src="bower_components/modernizr/modernizr.js"></script>
         <!-- endbuild -->
+        <script type="text/javascript" language="javascript">
+	function getForecast(cityName){
+		$.ajax({
+		
+		  // The 'type' property sets the HTTP method.
+		  // A value of 'PUT' or 'DELETE' will trigger a preflight request.
+		  type: 'GET',
+		
+		  // The URL to make the request to.
+		  url: 'http://api.openweathermap.org/data/2.5/forecast/daily?q='+cityName+'&cnt=10&mode=json',
+		  
+		  //http://api.openweathermap.org/data/2.5/forecast/daily?lat=35&lon=139&cnt=10&mode=json
+		
+		  // The 'contentType' property sets the 'Content-Type' header.
+		  // The JQuery default for this property is
+		  // 'application/x-www-form-urlencoded; charset=UTF-8', which does not trigger
+		  // a preflight. If you set this value to anything other than
+		  // application/x-www-form-urlencoded, multipart/form-data, or text/plain,
+		  // you will trigger a preflight request.
+		  contentType: 'text/plain',
+		
+		  xhrFields: {
+			// The 'xhrFields' property sets additional fields on the XMLHttpRequest.
+			// This can be used to set the 'withCredentials' property.
+			// Set the value to 'true' if you'd like to pass cookies to the server.
+			// If this is enabled, your server must respond with the header
+			// 'Access-Control-Allow-Credentials: true'.
+			withCredentials: false
+		  },
+		
+		  headers: {
+			// Set any custom headers here.
+			// If you set any non-simple headers, your server must include these
+			// headers in the 'Access-Control-Allow-Headers' response header.
+		  },
+		
+		  success: function(data) {
+			// Here's where you handle a successful response.
+			console.log("data.city.name = "+data.city.name);
+			var cityName = data.city.name;
+			var temperature = data.list[0].temp.day;
+			//$("#page").append("<p>"+cityName+"</p>");
+			$("#page").append("<p>"+cityName+"'s current temperature is: "+temperature+"</p>");
+		  },
+		
+		  error: function(e) {
+			// Here's where you handle an error response.
+			// Note that if the error was due to a CORS issue,
+			// this function will still fire, but there won't be any additional
+			// information about the error.
+			alert("Error: "+e.message);
+		  }
+		});
+	};
+</script>
     </head>
     <body>
         <!--[if lt IE 10]>
@@ -38,7 +93,6 @@
                         <input type="submit" title="Get Forecast">
                     </form>
                 </div>
-                <p><a class="btn btn-lg btn-success" href="#">Go!</a></p>
             </div>
 
             <div class="row marketing">
