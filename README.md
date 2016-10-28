@@ -39,6 +39,8 @@ Please send a zip file to me with the code necessary to run
 your application as well as documentation of your Javascript workflow.  The zip file should only 
 contain items that you would check into source control.
 
+Demo here: http://www.coleman-creative.com/clients/demos/Fitch/
+
 Feel free to send e-mails to that address if 
 you have any questions about requirements.
 
